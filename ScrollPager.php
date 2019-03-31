@@ -231,7 +231,13 @@ class ScrollPager extends Widget
      * You must set this property in order to make ScrollPager work.
      */
     public $pagination;
-
+    
+	/**
+	 * @var array The options for yii\widgets\LinkPager.
+	 */
+	public $options = [];
+	public $linkOptions;
+    
     /**
      * Initializes the pager.
      */
@@ -345,9 +351,8 @@ class ScrollPager extends Widget
         // Render pagination links
         echo LinkPager::widget([
             'pagination' => $this->pagination,
-            'options' => [
-                'class' => 'pagination hidden'
-            ]
+            'options' => array_merge($this->options, ['class' => 'pagination hidden']),
+            'linkOptions' => $this->linkOptions,
         ]);
     }
 
